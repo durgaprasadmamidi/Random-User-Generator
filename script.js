@@ -22,10 +22,10 @@ function getRandomUser(){
             p[4].textContent = `Age: ${user.dob.age}`;
             document.querySelector('img').src = user.picture.large;
             if(user.gender === 'male'){
-                document.body.style.backgroundColor = 'steelblue';
+                document.body.style.backgroundColor = '#424242';
             }
             else{
-                document.body.style.backgroundColor = 'rebeccapurple';
+                document.body.style.backgroundColor = '#fe3b72';
             }
             hideSpinner();
         });
