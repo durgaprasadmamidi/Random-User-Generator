@@ -11,7 +11,12 @@ function hideSpinner(){
 function getRandomUser(){
     showSpinner();
     fetch('https://randomuser.me/api/').
-        then((response)=>response.json()).
+        then((response)=>{
+            if(!response.ok){
+                throw new Error('Request failed');
+            }
+            return response.json()
+        }).
         then((jsonData)=>jsonData.results[0]).
         then((user)=>{
             let p = document.querySelectorAll('.text-xl');
@@ -28,6 +33,11 @@ function getRandomUser(){
                 document.body.style.backgroundColor = '#fe3b72';
             }
             hideSpinner();
+        })
+        .catch((error)=>{
+            hideSpinner();
+            document.querySelector('#user').innerHTML = 
+            `<p class="text-xl text-center text-red-800 mb-5">${error}</p>`
         });
 }
     let btn = document.getElementById('generate')
